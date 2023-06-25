@@ -1,0 +1,18 @@
+@import './base.scss';
+
+#app {
+  margin: 0;
+  padding: 0;
+  font-weight: normal;
+  display: grid;
+  grid-template-columns: minmax(40px, 1fr) minmax(auto, 1400px) minmax(40px, 1fr);
+
+  >* {
+    grid-column: 2;
+
+    &.full {
+      grid-column: 1 / -1;
+    }
+  }
+
+}
