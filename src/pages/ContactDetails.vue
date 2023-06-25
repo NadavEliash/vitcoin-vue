@@ -1,5 +1,6 @@
 <template>
     <article v-if="contact" class="contact-details">
+        <img :src="`https://robohash.org/${contact.name}.png`" alt="user-image">
         <h2>{{ contact.name }}</h2>
         <h3>{{ contact.email }}</h3>
         <h3>{{ contact.phone }}</h3>

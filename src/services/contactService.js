@@ -1,3 +1,8 @@
+import axios from "axios";
+import { storageService } from "./async-storage.service";
+
+const CONTACT_KEY = 'contactDB'
+
 export const contactService = {
     getContacts,
     getContactById,
@@ -7,8 +12,7 @@ export const contactService = {
 }
 
 
-
-const contacts = [
+const demoContacts = [
     {
         "_id": "5a56640269f443a5d64b32ca",
         "name": "Ochoa Hyde",
@@ -124,7 +128,7 @@ const contacts = [
         "email": "lillyconner@renovize.com",
         "phone": "+1 (842) 587-3812"
     }
-];
+]
 
 function sort(arr) {
     return arr.sort((a, b) => {
@@ -140,18 +144,25 @@ function sort(arr) {
 }
 
 function getContacts(filterBy = null) {
-    return new Promise((resolve, reject) => {
-        var contactsToReturn = contacts;
-        if (filterBy && filterBy.term) {
-            contactsToReturn = filter(filterBy.term)
-        }
-        resolve(sort(contactsToReturn))
-    })
+    return storageService.query(CONTACT_KEY)
+        .then(contacts => {
+            if (!contacts.length) {
+                contacts = demoContacts
+                storageService.save(CONTACT_KEY, contacts)
+            }
+
+            if (filterBy?.txt) {
+                const regex = new RegExp(this.filterBy.txt, 'i')
+                const filteredContacts = contacts.filter(contact => regex.test(contact.name))
+                return filteredContacts
+            }
+            return contacts
+        })
 }
 
-function getContactById(id) {
+function getContactById(contactId) {
     return new Promise((resolve, reject) => {
-        const contact = contacts.find(contact => contact._id === id)
+        const contact = storageService.get(CONTACT_KEY, contactId)
         contact ? resolve(contact) : reject(`Contact id ${id} not found!`)
     })
 }
@@ -180,7 +191,7 @@ function _updateContact(contact) {
 function _addContact(contact) {
     return new Promise((resolve, reject) => {
         contact._id = _makeId()
-        contacts.push(contact)
+        contacts.unshift(contact)
         resolve(contact)
     })
 }
@@ -193,7 +204,8 @@ function getEmptyContact() {
     return {
         name: '',
         email: '',
-        phone: ''
+        phone: '',
+        imgUrl: _getUserImg()
     }
 }
 
@@ -215,4 +227,10 @@ function _makeId(length = 10) {
         txt += possible.charAt(Math.floor(Math.random() * possible.length))
     }
     return txt
+}
+
+function _getUserImg() {
+    const val = Math.random()
+    if (val < .5) return 'https://xsgames.co/randomusers/avatar.php?g=male'
+    else return 'https://xsgames.co/randomusers/avatar.php?g=female'
 }
