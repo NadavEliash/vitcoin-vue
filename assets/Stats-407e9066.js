@@ -1,1 +1,0 @@
-import{_ as t,o as e,c as s,a as c}from"./index-9875b2ff.js";const o={},a=c("h1",null,"Statistics: ",-1),n=[a];function _(r,i){return e(),s("main",null,n)}const d=t(o,[["render",_]]);export{d as default};
