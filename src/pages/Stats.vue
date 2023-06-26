@@ -57,15 +57,16 @@ export default {
 .statistics {
 
   .exchange-box {
-    position: relative;
-    width: 25%;
-    margin-inline: auto;
-    margin-bottom: 1rem;
+    position: absolute;
+    right: 15%;
+    top: 12vh;
+    width: 350px;
     background-color: rgba(0,0,0,0.4);
     padding: 1rem;
     padding-top: .5rem;
-    border-radius: 2rem;
+    border-radius: 1rem;
     text-indent: 1rem;
+    line-height: 4rem;
 
     h1 {
       font-size: 2.2rem;
@@ -98,8 +99,13 @@ export default {
   }
 
   .charts {
-    width: 85vw;
+    width: 80vw;
+    max-width: 1200px;
     margin-inline: auto;
+    margin-top: 10vh;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    padding: 1rem;
+    border-radius: 1rem;
   }
 }
 </style>

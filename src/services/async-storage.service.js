@@ -50,11 +50,12 @@ function remove(entityType, entityId) {
     })
 }
 
-// Private functions
 
 function save(entityType, entities) {
     localStorage.setItem(entityType, JSON.stringify(entities))
 }
+
+// Private functions
 
 function _makeId(length = 5) {
     var text = ''

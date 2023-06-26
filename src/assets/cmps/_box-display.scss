@@ -1,0 +1,103 @@
+.box-display {
+    position: relative;
+    background-color: rgba(255, 255, 255, 0.1);
+    border-radius: 3rem;
+    width: 40%;
+    height: 60vh;
+    margin: auto;
+    text-align: center;
+    padding-top: 2rem;
+
+    .contact-img,
+    .user-img {
+        width: 200px;
+    }
+
+    h2 {
+        font-size: 2rem;
+        font-weight: 600;
+    }
+
+    .contact-info,
+    .user-info {
+        width: 80%;
+        margin-inline: auto;
+        font-size: 1.3rem;
+        margin-block: 10px;
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        justify-content: space-between;
+        padding-inline: 2rem;
+        padding-block: 1rem;
+        background-color: rgba(255, 255, 255, 0.02);
+        border-radius: 3rem;
+
+        img {
+            width: 35px;
+            filter: invert(.8);
+        }
+    }
+
+
+    button {
+        border: 0;
+        border-radius: 3rem;
+        width: 80%;
+        height: 3rem;
+        margin-top: 2rem;
+        background-color: rgba(255, 255, 255, 0.1);
+        cursor: pointer;
+        margin-inline: auto;
+        font-size: 1.3rem;
+        color: white;
+
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        justify-content: center;
+        gap: 1rem;
+
+        img {
+            width: 30px;
+            filter: invert(.8);
+        }
+
+        &:hover {
+            background-color: rgba(255, 255, 255, 0.3);
+            transition: .6s;
+        }
+
+    }
+
+    .back-button {
+        height: 3rem;
+        background-color: rgba(255, 255, 255, 0.1);
+        position: absolute;
+        bottom: 2rem;
+        left: 50%;
+        translate: -50%;
+
+        img {
+            rotate: 20deg;
+            width: 50px;
+        }
+    }
+
+    input {
+        display: block;
+        margin-top: 1rem;
+        margin-inline: auto;
+        height: 3rem;
+        width: 80%;
+        border-radius: 2rem;
+        font-size: 1.2rem;
+        text-indent: 1rem;
+        background-color: rgba(255, 255, 255, 0.06);
+        border: 0;
+        color: white;
+        caret-color: white;
+        height: 4rem;
+    }
+
+}

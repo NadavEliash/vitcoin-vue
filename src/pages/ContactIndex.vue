@@ -58,5 +58,10 @@ export default {
     background-color: rgba($color: #ffffff, $alpha: .1);
     color: bisque;
     cursor: pointer;
+
+    &:hover {
+        transition: .4s;
+        box-shadow: 0px 0px 20px 0px rgba(255, 255, 255, 0.4);
+    }
 }
 </style>

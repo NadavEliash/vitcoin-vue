@@ -27,6 +27,7 @@ export default {
 
 <style lang="scss">
 .contact-filter {
+    margin-top: 3vh;
     position: relative;
     width: 40%;
     margin-inline: auto;

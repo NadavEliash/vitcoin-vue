@@ -62,7 +62,7 @@ export default {
 .contact-list-ul {
     padding: 0;
     margin-top: 2rem;
-    height: 70vh;
+    height: 62vh;
     width: 40%;
     overflow-y: scroll;
     margin-inline: auto;
@@ -84,6 +84,7 @@ export default {
 
 
 .contact-list {
+    width: 97%;
     list-style: none;
     margin-block: 1rem;
     background-color: rgba($color: #a6a6a6, $alpha: 0.1);
@@ -97,6 +98,11 @@ export default {
 
     &:first-child {
         margin-top: 6px;
+    }
+
+    &:hover {
+        transition: .2s;
+        box-shadow: 0px 0px 10px 0px rgba(255, 255, 255, 0.4);
     }
 }
 
@@ -119,6 +125,11 @@ h2 {
     img {
         width: 25px;
         filter: invert(.8);
+
+        &:hover {
+            scale: 1.1;
+            transition: .4s;
+        }
     }
 }
 </style>

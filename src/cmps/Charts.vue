@@ -98,8 +98,9 @@ export default {
 <style lang="scss">
 .toggle-charts {
     position: relative;
-    width: 22%;
-    height: 40px;
+    width: 30%;
+    min-width: 300px;
+    height: 33px;
     background-color: rgba(0, 0, 0, 0.4);
     border-radius: 3rem;
     font-size: 1.3rem;
@@ -107,12 +108,13 @@ export default {
     flex-direction: row;
     align-items: center;
     justify-content: space-between;
-    padding-inline: 1.2rem;
+    padding-inline: 1.5rem;
     cursor: pointer;
 
     .marked {
         position: absolute;
         background-color: rgba(255, 255, 255, 0.4);
+        box-shadow: 0px 0px 20px 0px rgba(255, 255, 255, 0.4);
         height: 100%;
         border-radius: 3rem;
         transition: .5s;
