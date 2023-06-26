@@ -10,12 +10,9 @@
 import ContactList from '@/cmps/ContactList.vue'
 import ContactFilter from '@/cmps/ContactFilter.vue'
 
-import { contactService } from '@/services/contactService.js'
-
 export default {
     data() {
         return {
-            contacts: null,
             filterBy: {}
         }
     },
@@ -24,19 +21,20 @@ export default {
             this.filterBy = filterBy
         },
         onRemoveContact(contactId) {
-            const idx = this.contacts.findIndex(contact => contact._id === contactId)
-            this.contacts.splice(idx, 1)
-            contactService.deleteContact(contactId)
+            this.$store.dispatch({ type: 'removeContact', contactId })
         }
     },
     computed: {
+        contacts() {
+            return this.$store.getters.contacts
+        },
         filteredContacts() {
             const regex = new RegExp(this.filterBy.txt, 'i')
             return this.contacts.filter(contact => regex.test(contact.name))
         }
     },
-    async mounted() {
-        this.contacts = await contactService.getContacts()
+    async created() {
+        this.$store.dispatch({ type: 'loadContacts' })
     },
     components: {
         ContactList,

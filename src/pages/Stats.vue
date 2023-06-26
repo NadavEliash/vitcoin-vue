@@ -1,11 +1,17 @@
 <template>
   <main class="statistics">
-    <div class="headline" v-if="exchangeRate" @click="onReverseExchange">Exchange rate: USD$ {{
-      exchangeRate.dolar.toLocaleString() }} =
-      <img src="https://cdn-icons-png.flaticon.com/512/991/991959.png" alt="bitcoin" /> {{ exchangeRate.bitcoin }}
-      <img class="reverse" src="https://www.svgrepo.com/show/360701/refresh-reverse.svg" alt="reverse">
+    <div class="exchange-box">
+      <h1>Exchange rate:</h1>
+      <div class="headline" v-if="exchangeRate" @click="onReverseExchange">
+        <span class="dolar">USD$ {{ exchangeRate.dolar.toLocaleString() }} </span> =
+        <span class="bitcoin">
+          <img src="https://cdn-icons-png.flaticon.com/512/991/991959.png" alt="bitcoin" />
+          {{ exchangeRate.bitcoin }}
+        </span>
+        <img class="reverse" src="https://www.svgrepo.com/show/360701/refresh-reverse.svg" alt="reverse">
+      </div>
     </div>
-    <Charts />
+    <Charts class="charts" />
   </main>
 </template>
 
@@ -50,26 +56,50 @@ export default {
 <style lang="scss">
 .statistics {
 
-  .headline {
-    width: 60%;
+  .exchange-box {
     position: relative;
-    font-size: 2.5rem;
-    color: white;
-    font-weight: 500;
-    margin-block: 2rem;
-    cursor: pointer;
+    width: 25%;
+    margin-inline: auto;
+    margin-bottom: 1rem;
+    background-color: rgba(0,0,0,0.4);
+    padding: 1rem;
+    padding-top: .5rem;
+    border-radius: 2rem;
+    text-indent: 1rem;
 
-    img {
-      width: 40px;
-      filter: invert(1);
-      translate: 0 15%;
+    h1 {
+      font-size: 2.2rem;
+      color: white;
+      font-weight: 600;
+      margin-bottom: 1rem;
     }
 
-    .reverse {
-      position: absolute;
-      top: .5rem;
-      right: -1rem;
+    .headline {
+      font-size: 1.5rem;
+      color: white;
+      font-weight: 500;
+      cursor: pointer;
+      display: flex;
+      flex-direction: row;
+      align-items: center;
+
+      img {
+        width: 30px;
+        filter: invert(1);
+        translate: 0 20%;
+      }
+
+      .reverse {
+        position: absolute;
+        top: 1.3rem;
+        right: 2rem;
+      }
     }
+  }
+
+  .charts {
+    width: 85vw;
+    margin-inline: auto;
   }
 }
 </style>

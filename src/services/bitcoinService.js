@@ -57,4 +57,6 @@ async function getAvgBlockSize() {
         const size = item.y
         return size.toFixed(4)
     })
+
+    return({dates, avgSize})
 }
