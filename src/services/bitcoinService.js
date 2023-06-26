@@ -2,6 +2,7 @@ import axios from "axios"
 import { storageService } from "./async-storage.service"
 
 const MARKET_HISTORY_KEY = 'marketHistoryDB'
+const BLOCK_SIZE_KEY = 'blockSizeDB'
 
 export const bitcoinService = {
     getRate,
@@ -10,8 +11,8 @@ export const bitcoinService = {
 }
 
 async function getRate() {
-    const rate = await axios.get('https://blockchain.info/tobtc?currency=USD&value=1')
-    return rate
+    const res = await axios.get('https://blockchain.info/tobtc?currency=USD&value=1')
+    return res.data
 }
 
 async function getMarketPriceHistory() {
@@ -38,6 +39,22 @@ async function getMarketPriceHistory() {
 }
 
 async function getAvgBlockSize() {
-    const avgBlockSize = await axios.get('https://api.blockchain.info/charts/avg-block-size?timespan=5months&format=json&cors=true')
-    return avgBlockSize
+    let avgBlockSize = await storageService.query(BLOCK_SIZE_KEY)
+    if (!avgBlockSize.length) {
+        const res = await axios.get('https://api.blockchain.info/charts/avg-block-size?timespan=5months&format=json&cors=true')
+        avgBlockSize = res.data.values
+        storageService.save(BLOCK_SIZE_KEY, avgBlockSize)
+    }
+
+    const dates = avgBlockSize.map(item => {
+        const roughDate = new Date(item.x * 1000)
+        const month = roughDate.getMonth() + 1
+        const day = roughDate.getDate()
+        return `${day}/${month}`
+    })
+
+    const avgSize = avgBlockSize.map(item => {
+        const size = item.y
+        return size.toFixed(4)
+    })
 }

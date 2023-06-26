@@ -37,7 +37,7 @@ nav {
         img {
             width: 70px;
             filter: invert(1);
-            margin-top: 1rem;
+            margin-top: 2rem;
         }
     }
 }

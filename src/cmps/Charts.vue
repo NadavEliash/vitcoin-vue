@@ -24,6 +24,19 @@ export default {
             },
             chartOptions: {
                 responsive: true,
+                plugins: {
+                    legend: {
+                        labels: {
+                            boxWidth: 5,
+                            boxHeight: 5,
+                            color: 'white',
+                            font: {
+                                size: 20,
+                                weight: 600,
+                            }
+                        }
+                    }
+                }
             },
             loaded: false
         }
@@ -36,7 +49,7 @@ export default {
             this.chartData = {
                 labels: marketData.dates,
                 datasets: [{
-                    label: 'Market Price (USD)',
+                    label: 'Market price (USD) in the last 5 months',
                     data: marketData.prices,
                     borderColor: 'rgba(255, 50, 50, .5)',
                     borderWidth: 3,
@@ -52,5 +65,4 @@ export default {
 }
 </script>
 
-<style>
-</style>
+<style></style>

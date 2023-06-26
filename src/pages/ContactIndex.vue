@@ -1,7 +1,7 @@
 <template>
     <ContactFilter @filter="onSetFilterBy" />
     <RouterLink to="/contact/edit">
-        <button>Add contact</button>
+        <button class="add-contact">Add contact</button>
     </RouterLink>
     <ContactList v-if="contacts" :contacts="filteredContacts" @remove="onRemoveContact" />
 </template>
@@ -30,10 +30,10 @@ export default {
         }
     },
     computed: {
-            filteredContacts() {
-                const regex = new RegExp(this.filterBy.txt, 'i')
-                return this.contacts.filter(contact => regex.test(contact.name))
-            }
+        filteredContacts() {
+            const regex = new RegExp(this.filterBy.txt, 'i')
+            return this.contacts.filter(contact => regex.test(contact.name))
+        }
     },
     async created() {
         this.contacts = await contactService.getContacts()
@@ -47,4 +47,18 @@ export default {
 
 
 
-<style></style>
+<style lang="scss">
+.add-contact {
+    height: 2.5rem;
+    width: 39%;
+    border-radius: 3rem;
+    font-size: 1.2rem;
+    margin-top: 1rem;
+    margin-left: 50%;
+    translate: -50%;
+    border: 0;
+    background-color: rgba($color: #ffffff, $alpha: .1);
+    color: bisque;
+    cursor: pointer;
+}
+</style>

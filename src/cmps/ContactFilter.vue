@@ -1,6 +1,7 @@
 <template>
     <div class="contact-filter">
         <input type="text" @input="onSetFilterBy" v-model="filterBy.txt" placeholder="search for contacts">
+        <img src="https://www.svgrepo.com/show/507849/search.svg" alt="search">
     </div>
 </template>
 
@@ -24,4 +25,25 @@ export default {
 
 </script>
 
-<style></style>
+<style lang="scss">
+.contact-filter {
+    position: relative;
+    width: 30rem;
+    margin-inline: auto;
+
+    input {
+        height: 3rem;
+        width: 100%;
+        border-radius: 2rem;
+        font-size: 1.2rem;
+        text-indent: 1rem;
+    }
+
+    img {
+        width: 25px;
+        position: absolute;
+        translate: -160% 45%;
+
+    }
+}
+</style>
