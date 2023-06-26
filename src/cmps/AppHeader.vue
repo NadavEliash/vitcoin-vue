@@ -20,7 +20,6 @@ nav {
     align-items: center;
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
     font-size: 1.5rem;
-    caret-color: transparent;
     height: 10vh;
 
     a {

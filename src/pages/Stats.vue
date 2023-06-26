@@ -58,7 +58,6 @@ export default {
     font-weight: 500;
     margin-block: 2rem;
     cursor: pointer;
-    caret-color: transparent;
 
     img {
       width: 40px;

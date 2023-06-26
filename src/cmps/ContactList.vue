@@ -61,10 +61,29 @@ export default {
 
 .contact-list-ul {
     padding: 0;
+    margin-top: 2rem;
+    height: 70vh;
+    width: 40%;
+    overflow-y: scroll;
+    margin-inline: auto;
+
+    &::-webkit-scrollbar {
+        width: .7rem;
+    }
+
+    &::-webkit-scrollbar-track {
+        box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.3);
+    }
+
+    &::-webkit-scrollbar-thumb {
+        background-color: rgba(255, 255, 255, 0.1);
+        outline: 1px solid slategrey;
+        border-radius: 1rem;
+    }
 }
 
+
 .contact-list {
-    width: 40%;
     list-style: none;
     margin-block: 1rem;
     background-color: rgba($color: #a6a6a6, $alpha: 0.1);
@@ -75,6 +94,14 @@ export default {
     flex-direction: row;
     align-items: center;
     justify-content: space-between;
+
+    &:first-child {
+        margin-top: 6px;
+    }
+}
+
+h2 {
+    cursor: pointer;
 }
 
 .action {

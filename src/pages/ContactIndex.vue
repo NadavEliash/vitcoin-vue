@@ -35,7 +35,7 @@ export default {
             return this.contacts.filter(contact => regex.test(contact.name))
         }
     },
-    async created() {
+    async mounted() {
         this.contacts = await contactService.getContacts()
     },
     components: {
@@ -50,7 +50,7 @@ export default {
 <style lang="scss">
 .add-contact {
     height: 2.5rem;
-    width: 39%;
+    width: 40%;
     border-radius: 3rem;
     font-size: 1.2rem;
     margin-top: 1rem;

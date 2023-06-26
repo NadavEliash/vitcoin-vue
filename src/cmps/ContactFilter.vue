@@ -28,7 +28,7 @@ export default {
 <style lang="scss">
 .contact-filter {
     position: relative;
-    width: 30rem;
+    width: 40%;
     margin-inline: auto;
 
     input {
@@ -37,6 +37,7 @@ export default {
         border-radius: 2rem;
         font-size: 1.2rem;
         text-indent: 1rem;
+        caret-color: rgb(69, 69, 69);
     }
 
     img {

@@ -31,7 +31,6 @@ export default {
 
 <style lang="scss">
 .contact-details {
-    caret-color: transparent;
     background-color: rgba(255, 255, 255, 0.1);
     border-radius: 5rem;
     width: 40%;
@@ -67,14 +66,14 @@ export default {
         border: 0;
         border-radius: 3rem;
         width: 10rem;
-        height: 5rem;
+        height: 3rem;
         margin-top: 2rem;
         background-color: rgba(255, 255, 255, 0.1);
         cursor: pointer;
 
         img {
             rotate: 20deg;
-            width: 80px;
+            width: 50px;
             filter: invert(.8);
         }
     }

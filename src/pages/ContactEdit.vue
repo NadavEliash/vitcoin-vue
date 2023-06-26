@@ -34,8 +34,8 @@ export default {
         }
     },
     methods: {
-        onSaveContact() {
-            contactService.saveContact(this.contact)
+        async onSaveContact() {
+            await contactService.saveContact(this.contact)
             this.$router.push('/contact')
         }
     }
@@ -87,7 +87,7 @@ export default {
     }
 
     .back-button {
-        height: 5rem;
+        height: 3rem;
         background-color: rgba(255, 255, 255, 0.1);
         position: absolute;
         bottom: 3rem;
@@ -96,7 +96,7 @@ export default {
 
         img {
             rotate: 20deg;
-            width: 80px;
+            width: 50px;
             filter: invert(.8);
         }
     }

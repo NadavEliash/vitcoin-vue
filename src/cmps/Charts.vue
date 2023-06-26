@@ -49,7 +49,7 @@ export default {
             this.chartData = {
                 labels: marketData.dates,
                 datasets: [{
-                    label: 'Market price (USD) in the last 5 months',
+                    label: 'Market price (USD)',
                     data: marketData.prices,
                     borderColor: 'rgba(255, 50, 50, .5)',
                     borderWidth: 3,
