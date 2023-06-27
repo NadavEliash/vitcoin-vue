@@ -1,6 +1,6 @@
 <template>
     <li class="transaction-list" v-if="transactions.length" v-for="transaction in transactions" :key="transaction.at">
-        You transfered {{ transaction.amount }}฿ to {{ transaction.to }}
+        You've transferred ₿{{ transaction.amount }} to {{ transaction.to }}
         <img src="https://www.svgrepo.com/show/482927/payment-bitcoin.svg" alt="transactions" />
     </li>
 </template>

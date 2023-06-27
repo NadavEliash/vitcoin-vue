@@ -1,19 +1,15 @@
 <template>
     <TransitionGroup name="list" tag="ul" class="contact-list-ul">
-        <li class="contact-list" v-for="contact in contacts" :key="contact._id">
+        <li class="contact-list" v-for="contact in contacts" :key="contact._id"
+            @click="$router.push(`/contact/${contact._id}`)">
             <ContactPreview :contact="contact" />
             <section class="action">
-                <RouterLink :to="`/contact/${contact._id}`">
-                    <button>
-                        <img src="https://www.svgrepo.com/show/506353/user-2.svg" alt="details">
-                    </button>
-                </RouterLink>
                 <RouterLink :to="`/contact/edit/${contact._id}`">
-                    <button>
+                    <button @click.stop>
                         <img src="https://www.svgrepo.com/show/510965/edit-pencil-01.svg" alt="edit">
                     </button>
                 </RouterLink>
-                <button @click="onRemoveContact(contact._id)">
+                <button @click.stop="onRemoveContact(contact._id)">
                     <img src="https://www.svgrepo.com/show/502608/delete-2.svg" alt="delete">
                 </button>
             </section>
@@ -95,6 +91,7 @@ export default {
     flex-direction: row;
     align-items: center;
     justify-content: space-between;
+    cursor: pointer;
 
     &:first-child {
         margin-top: 6px;
@@ -104,10 +101,6 @@ export default {
         transition: .2s;
         box-shadow: 0px 0px 10px 0px rgba(255, 255, 255, 0.4);
     }
-}
-
-h2 {
-    cursor: pointer;
 }
 
 .action {

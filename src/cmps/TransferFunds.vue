@@ -1,11 +1,9 @@
 <template>
     <div class="transfer-funds" v-if="user">
-        <h4>Your balance: {{ user.balance }} <img src="https://cdn-icons-png.flaticon.com/512/991/991959.png"
-                alt="bitcoin" /></h4>
+        <h4>Your balance is: ₿{{ user.balance }}</h4>
         <form @submit.prevent="onFund">
             <div class="amount-line">
-                <h4>Transfer</h4><input v-model.number="transaction.amount" type="number">
-                <img src="https://cdn-icons-png.flaticon.com/512/991/991959.png" alt="bitcoin" />
+                <h4>Transfer ₿</h4><input v-model.number="transaction.amount" type="number">
             </div>
             <button>Fund {{ contact.name }}</button>
         </form>

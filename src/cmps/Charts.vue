@@ -121,13 +121,13 @@ export default {
 
         &.left {
             left: 0;
-            width: 53%;
+            width: 50%;
         }
 
         &.right {
             left: 100%;
             translate: -100%;
-            width: 48%;
+            width: 45%;
         }
     }
 }

@@ -1,6 +1,6 @@
 <template>
     <div class="contact-preview">
-        <h2 @click="$router.push(`/contact/${contact._id}`)">{{ contact.name }}</h2>
+        <h2>{{ contact.name }}</h2>
     </div>
 </template>
 

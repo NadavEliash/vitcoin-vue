@@ -3,6 +3,7 @@
         <nav>
             <RouterLink to="/"><img class="logo" src="https://www.svgrepo.com/show/506408/bitcoin.svg" alt="bitcoin">
             </RouterLink>
+            <h3 v-if="user" class="balance">Your Current Balance: ₿{{ balance }}</h3>
             <RouterLink to="/contact">Contacts</RouterLink>
             <RouterLink to="/statistics">Statistics</RouterLink>
             <div v-if="user" class="user-avatar">
@@ -35,6 +36,9 @@ export default {
     computed: {
         user() {
             return this.$store.getters.user
+        },
+        balance() {
+            return this.$store.getters.user.balance
         }
     }
 }
@@ -49,6 +53,13 @@ nav {
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
     font-size: 1.5rem;
     height: 10vh;
+
+    .balance {
+        position: absolute;
+        left: 40%;
+        translate: -50% 5%;
+        text-shadow: 0px 0px 10px rgba(255, 255, 255, 1);
+    }
 
     .user-avatar {
         position: relative;
@@ -97,7 +108,7 @@ nav {
         .logo {
             width: 70px;
             filter: invert(1);
-            margin-top: 2rem;
+            translate: 0 20%;
         }
 
     }
