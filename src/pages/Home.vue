@@ -1,22 +1,40 @@
 <template>
     <div class="home-page">
         <h1>Trade. <span class="invest">Invest.</span> <span class="earn">Earn.</span></h1>
-        <div :class="isStart? 'login show' : 'login'" @click="$router.push('/login')">Get started!</div>
+        <div :class="isStart ? 'login show' : 'login'" @click="correctRoute">{{ buttonTxt }}</div>
+        <div v-if="user" class="transaction-home">
+            <TransactionList />
+        </div>
     </div>
 </template>
 
 <script>
+import TransactionList from '@/cmps/TransactionList.vue'
+
 export default {
     data() {
         return {
             isStart: false
+        };
+    },
+    computed: {
+        user() {
+            return this.$store.getters.user;
+        },
+        buttonTxt() {
+            const txt = this.user ? `Hey ${this.$store.getters.user.name}, Let's fund!` : "Get started!";
+            return txt;
+        },
+        correctRoute() {
+            const route = this.user ? this.$router.push("/contact") : this.$router.push("/login");
         }
     },
     created() {
         setTimeout(() => {
-            this.isStart = true
+            this.isStart = true;
         }, 1700);
-    }
+    },
+    components: { TransactionList }
 }
 </script>
 
@@ -84,15 +102,16 @@ export default {
     }
 
     .login {
-        font-size: 3rem;
+        font-size: 2.5rem;
         font-weight: 600;
-        background-color: rgba(255, 255, 255, 0.4);
+        background-color: rgba(255, 255, 255, 0.3);
         width: 40%;
+        min-width: max-content;
         text-align: center;
         border-radius: 3rem;
-        padding: .5rem;
+        padding: 1rem;
         margin-inline: auto;
-        margin-top: 6rem;
+        margin-top: 4rem;
         opacity: 0;
         cursor: pointer;
 
@@ -104,6 +123,18 @@ export default {
                 box-shadow: 0px 0px 4px 0px rgba(255, 255, 255, 1);
             }
         }
+    }
+
+    .transaction-home {
+        width: 60%;
+        margin-inline: auto;
+        margin-top: 2.5rem;
+
+        .transaction-list {
+            width: 90%;
+            box-shadow: 0px 0px 10px 0px rgba(255, 255, 255, .5);
+        }
+
     }
 }
 </style>

@@ -1,8 +1,8 @@
 <template>
     <main class="box-display">
-        <form @submit.prevent="onSignupUser">
-            <input v-model="user.name" type="text" placeholder="Add user name">
-            <input v-model="user.password" type="password" placeholder="Password">
+        <h2>Let's go!</h2>
+        <form @submit.prevent="onLogin">
+            <input v-model="user.name" type="text" placeholder="Your name">
             <button> Login </button>
         </form>
         <RouterLink to="/">
@@ -19,20 +19,25 @@ import { userService } from '@/services/userService.js'
 export default {
     data() {
         return {
-            user: null
+            user: {
+                name: ''
+            }
         }
     },
     methods: {
-        async onSignupUser() {
-            this.$store.dispatch({type: 'signupUser', user: this.user})
+        async onLogin() {
+            const currUser = await userService.getUser(this.user.name)
+            if (currUser) {
+                this.$store.dispatch({ type: 'loginUser', user: currUser })
+            } else {
+                const newUser = userService.getEmptyUser()
+                newUser.name = this.user.name
+                this.$store.dispatch({ type: 'signupUser', user: newUser })
+            }
             this.$router.push('/')
         }
     },
-    created(){
-        this.user = userService.getEmptyUser() 
-    }
 }
 </script>
 
-<style lang="scss">
-</style>
+<style lang="scss"></style>

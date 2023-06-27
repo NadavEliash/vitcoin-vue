@@ -9,11 +9,13 @@ export const userService = {
 }
 
 function save(user) {
-    storageService.post(USER_KEY, user)
+    user._id? storageService.put(USER_KEY, user) : storageService.post(USER_KEY, user)
 }
 
-function getUser(userId) {
-    storageService.get(USER_KEY, userId)
+async function getUser(userName) {
+    const users = await storageService.query(USER_KEY)
+    const user = users.find(user => user.name === userName)
+    return user
 }
 
 function getEmptyUser() {

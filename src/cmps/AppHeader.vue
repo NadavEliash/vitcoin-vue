@@ -1,10 +1,17 @@
 <template>
     <div class="navbar">
         <nav>
-            <RouterLink to="/"><img class="logo" src="https://www.svgrepo.com/show/506408/bitcoin.svg" alt="bitcoin"></RouterLink>
+            <RouterLink to="/"><img class="logo" src="https://www.svgrepo.com/show/506408/bitcoin.svg" alt="bitcoin">
+            </RouterLink>
             <RouterLink to="/contact">Contacts</RouterLink>
             <RouterLink to="/statistics">Statistics</RouterLink>
-            <RouterLink v-if="user" to="/user"><img src="https://www.svgrepo.com/show/446529/avatar.svg" alt="user"></RouterLink>
+            <div v-if="user" class="user-avatar">
+                <img @click="isUserBar = !isUserBar" src="https://www.svgrepo.com/show/446529/avatar.svg" alt="user" />
+                <div v-if="isUserBar" class="user-bar">
+                    <RouterLink to="/user" @click="isUserBar = false">User details</RouterLink>
+                    <h3 @click="logout">Logout</h3>
+                </div>
+            </div>
             <RouterLink v-else to="/login">Join</RouterLink>
         </nav>
     </div>
@@ -14,6 +21,17 @@
 // import { RouterLink } from 'vue-router'
 
 export default {
+    data() {
+        return {
+            isUserBar: false
+        }
+    },
+    methods: {
+        logout() {
+            this.$store.dispatch({ type: 'logout' })
+            this.isUserBar = false
+        }
+    },
     computed: {
         user() {
             return this.$store.getters.user
@@ -32,6 +50,39 @@ nav {
     font-size: 1.5rem;
     height: 10vh;
 
+    .user-avatar {
+        position: relative;
+
+        img {
+            width: 40px;
+            margin-top: 1rem;
+            margin-left: 3rem;
+            cursor: pointer;
+        }
+
+        .user-bar {
+            position: absolute;
+            right: 8px;
+            padding: .7rem;
+            border-radius: .5rem;
+            width: max-content;
+            background-color: rgba(255, 255, 255, 0.1);
+            font-size: 1rem;
+            color: rgb(255, 255, 255);
+            cursor: pointer;
+
+            a {
+                font-size: 1.25rem;
+                color: rgb(255, 255, 255);
+                margin-top: 2rem;
+            }
+
+            h3{
+                margin-block: .6rem;
+            }
+        }
+    }
+
     a {
         color: bisque;
         text-decoration: none;
@@ -42,19 +93,16 @@ nav {
         &:first-child {
             text-align: start;
         }
-        
-        img {
-            width: 40px;
-            margin-top: 1rem;
-        }
 
         .logo {
             width: 70px;
             filter: invert(1);
             margin-top: 2rem;
         }
+
     }
 }
+
 
 nav a.router-link-exact-active {
     color: white;
