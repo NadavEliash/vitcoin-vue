@@ -22,7 +22,7 @@ export default {
             return this.$store.getters.user;
         },
         buttonTxt() {
-            const txt = this.user ? `Hey ${this.$store.getters.user.name}, Let's fund!` : "Get started!";
+            const txt = this.user ? `Let's fund` : "Get started!";
             return txt;
         },
         correctRoute() {
@@ -42,13 +42,22 @@ export default {
 .home-page {
 
     h1 {
-        margin-top: 20vh;
-        font-size: 6rem;
+        width: 10rem;
+        margin-top: 8vh;
+        margin-left: 2rem;
+        font-size: 4rem;
+        line-height: 6rem;
         font-weight: 600;
         text-align: center;
         animation: .5s show;
         text-shadow: 0px 0px 20px rgba(255, 255, 255, 0.4);
 
+        @media(min-width: 900px) {
+            width: 100%;
+            margin-left: 0;
+            margin-top: 20vh;
+            font-size: 6rem;
+        }
 
         .invest {
             font-weight: 600;
@@ -106,14 +115,20 @@ export default {
         font-weight: 600;
         background-color: rgba(255, 255, 255, 0.3);
         width: 40%;
-        min-width: max-content;
+        min-width: 300px;
         text-align: center;
-        border-radius: 3rem;
+        border-radius: 0 3rem 3rem 0;
         padding: 1rem;
-        margin-inline: auto;
-        margin-top: 4rem;
+        margin-left: 2rem;
+        margin-top: 2rem;
         opacity: 0;
         cursor: pointer;
+
+        @media(min-width: 900px) {
+            border-radius: 3rem;
+            margin-top: 4rem;
+            margin-inline: auto;
+        }
 
         &.show {
             opacity: 1;

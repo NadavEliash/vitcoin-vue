@@ -2,7 +2,7 @@
   <main class="statistics">
     <div class="exchange-box">
       <h1>Exchange rate:</h1>
-      <div class="headline" v-if="exchangeRate" @click="onReverseExchange">
+      <div class="rate" v-if="exchangeRate" @click="onReverseExchange">
         <span class="dolar">USD$ {{ exchangeRate.dolar.toLocaleString() }} </span> =
         <span class="bitcoin">
           <img src="https://cdn-icons-png.flaticon.com/512/991/991959.png" alt="bitcoin" />
@@ -57,11 +57,13 @@ export default {
 .statistics {
 
   .exchange-box {
-    position: absolute;
-    right: 15%;
-    top: 12vh;
-    width: 350px;
-    background-color: rgba(0,0,0,0.4);
+    position: relative;
+    display: flex;
+    flex-direction: row;
+    align-items: baseline;
+    width: 600px;
+    margin-block: 1rem;
+    background-color: rgba(0, 0, 0, 0.4);
     padding: 1rem;
     padding-top: .5rem;
     border-radius: 1rem;
@@ -69,13 +71,26 @@ export default {
     line-height: 4rem;
 
     h1 {
-      font-size: 2.2rem;
+      display: inline;
+      font-size: 2rem;
       color: white;
       font-weight: 600;
-      margin-bottom: 1rem;
     }
 
-    .headline {
+    @media(min-width: 1200px) {
+      width: 350px;
+      margin-left: auto;
+      margin-right: 3rem;
+      display: block;
+      margin-bottom: -5rem;
+
+      h1 {
+        margin-bottom: 1rem;
+      }
+    }
+
+
+    .rate {
       font-size: 1.5rem;
       color: white;
       font-weight: 500;
@@ -92,8 +107,8 @@ export default {
 
       .reverse {
         position: absolute;
-        top: 1.3rem;
-        right: 2rem;
+        top: 1.5rem;
+        right: 1rem;
       }
     }
   }
@@ -101,11 +116,13 @@ export default {
   .charts {
     width: 80vw;
     max-width: 1200px;
-    margin-inline: auto;
-    margin-top: 10vh;
     border: 1px solid rgba(255, 255, 255, 0.1);
     padding: 1rem;
     border-radius: 1rem;
+
+    @media(min-width: 1200px) {
+      margin-inline: auto;
+    }
   }
 }
 </style>

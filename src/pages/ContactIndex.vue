@@ -48,7 +48,9 @@ export default {
 <style lang="scss">
 .add-contact {
     height: 2.5rem;
-    width: 40%;
+    width: 100%;
+    max-width: 600px;
+    min-width: 320px;
     border-radius: 3rem;
     font-size: 1.2rem;
     margin-top: 1rem;

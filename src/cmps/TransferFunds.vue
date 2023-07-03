@@ -58,8 +58,7 @@ export default {
         width: max-content;
         display: flex;
         flex-direction: row;
-        justify-content: center;
-        align-items: center;
+        align-items: baseline;
         gap: 1rem;
         margin-inline: auto;
 
@@ -76,10 +75,6 @@ export default {
         input::-webkit-inner-spin-button {
             -webkit-appearance: none;
             margin: 0;
-        }
-
-        h4 {
-            translate: 0 10%;
         }
     }
 

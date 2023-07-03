@@ -59,7 +59,8 @@ export default {
     padding: 0;
     margin-top: 2rem;
     height: 62vh;
-    width: 40%;
+    max-width: 600px;
+    min-width: 320px;
     overflow-y: scroll;
     margin-inline: auto;
 

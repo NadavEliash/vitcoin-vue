@@ -29,7 +29,8 @@ export default {
 .contact-filter {
     margin-top: 3vh;
     position: relative;
-    width: 40%;
+    max-width: 600px;
+    min-width: 320px;
     margin-inline: auto;
 
     input {
