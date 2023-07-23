@@ -1,7 +1,7 @@
 <template>
     <div class="home-page">
         <h1>Trade. <span class="invest">Invest.</span> <span class="earn">Earn.</span></h1>
-        <div :class="isStart ? 'login show' : 'login'" @click="correctRoute">{{ buttonTxt }}</div>
+        <div class="login" @click="correctRoute">{{ buttonTxt }}</div>
         <div v-if="user" class="transaction-home">
             <TransactionList />
         </div>
@@ -12,14 +12,9 @@
 import TransactionList from '@/cmps/TransactionList.vue'
 
 export default {
-    data() {
-        return {
-            isStart: false
-        };
-    },
     computed: {
         user() {
-            return this.$store.getters.user;
+            return this.$store.getters.user
         },
         buttonTxt() {
             const txt = this.user ? `Let's fund` : "Get started!";
@@ -28,11 +23,6 @@ export default {
         correctRoute() {
             const route = this.user ? this.$router.push("/contact") : this.$router.push("/login");
         }
-    },
-    created() {
-        setTimeout(() => {
-            this.isStart = true;
-        }, 1700);
     },
     components: { TransactionList }
 }
@@ -57,6 +47,10 @@ export default {
             margin-left: 0;
             margin-top: 20vh;
             font-size: 6rem;
+        }
+
+        @media(max-width: 600px) {
+            margin-inline: 0;
         }
 
         .invest {
@@ -121,8 +115,9 @@ export default {
         padding: 1rem;
         margin-left: 2rem;
         margin-top: 2rem;
-        opacity: 0;
         cursor: pointer;
+        animation: deley-show;
+        animation-duration: 2.3s;
 
         @media(min-width: 900px) {
             border-radius: 3rem;
@@ -130,23 +125,37 @@ export default {
             margin-inline: auto;
         }
 
-        &.show {
-            opacity: 1;
-            transition: 1s;
+        @media(max-width: 600px) {
+            margin-inline: 0;
+        }
 
-            &:hover {
-                box-shadow: 0px 0px 4px 0px rgba(255, 255, 255, 1);
+        @keyframes deley-show {
+            0% {
+                opacity: 0;
+            }
+
+            66% {
+                opacity: 0;
+            }
+
+            100% {
+                opacity: 1;
             }
         }
+
+        &:hover {
+            box-shadow: 0px 0px 4px 0px rgba(255, 255, 255, 1);
+        }
+
     }
 
     .transaction-home {
-        width: 60%;
+        margin-block: 2.5rem;
         margin-inline: auto;
-        margin-top: 2.5rem;
 
-        .transaction-list {
-            width: 90%;
+        .transaction {
+            margin-inline: auto;
+            width: clamp(260px, 80vw, 600px);
             box-shadow: 0px 0px 10px 0px rgba(255, 255, 255, .5);
         }
 

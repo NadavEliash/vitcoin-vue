@@ -11,8 +11,14 @@ export const bitcoinService = {
 }
 
 async function getRate() {
-    const res = await axios.get('https://blockchain.info/tobtc?currency=USD&value=1')
-    return res.data
+    const rate = sessionStorage.getItem('bitcoinRate')
+    if (rate) return rate
+    else {
+        console.log('axios please')
+        const res = await axios.get('https://blockchain.info/tobtc?currency=USD&value=1')
+        sessionStorage.setItem('bitcoinRate', res.data)
+        return res.data
+    }
 }
 
 async function getMarketPriceHistory() {
@@ -29,13 +35,15 @@ async function getMarketPriceHistory() {
         const day = roughDate.getDate()
         return `${day}/${month}`
     })
+    // .filter((date, idx) => idx % 2 === 0)
 
     const prices = marketPriceHistory.map(item => {
         const price = item.y
-        return price
+        return price / 1000
     })
+    // .filter((date, idx) => idx % 2 === 0)
 
-    return ({dates, prices})
+    return ({ dates, prices })
 }
 
 async function getAvgBlockSize() {
@@ -52,11 +60,13 @@ async function getAvgBlockSize() {
         const day = roughDate.getDate()
         return `${day}/${month}`
     })
+    .filter((date, idx) => idx % 2 === 0)
 
     const avgSize = avgBlockSize.map(item => {
         const size = item.y
         return size.toFixed(4)
     })
+    .filter((date, idx) => idx % 2 === 0)
 
-    return({dates, avgSize})
+    return ({ dates, avgSize })
 }

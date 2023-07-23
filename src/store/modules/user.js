@@ -4,7 +4,7 @@ export default {
     strict: true,
     state() {
         return {
-            user: null
+            user: userService.getLoggedinUser(),
         }
     },
     mutations: {
@@ -18,9 +18,11 @@ export default {
             context.commit({ type: 'setUser', user })
         },
         loginUser(context, { user }) {
+            userService.saveLoggedinUser(user)
             context.commit({ type: 'setUser', user })
         },
         logout(context) {
+            userService.saveLoggedinUser(null)
             context.commit({ type: 'setUser', user: null })
         },
         async setTransaction(context, { transaction }) {

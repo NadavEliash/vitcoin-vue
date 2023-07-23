@@ -1,6 +1,6 @@
 <template>
   <main class="statistics">
-    <div class="exchange-box">
+    <!-- <div class="exchange-box">
       <h1>Exchange rate:</h1>
       <div class="rate" v-if="exchangeRate" @click="onReverseExchange">
         <span class="dolar">USD$ {{ exchangeRate.dolar.toLocaleString() }} </span> =
@@ -10,7 +10,7 @@
         </span>
         <img class="reverse" src="https://www.svgrepo.com/show/360701/refresh-reverse.svg" alt="reverse">
       </div>
-    </div>
+    </div> -->
     <Charts class="charts" />
   </main>
 </template>
@@ -114,6 +114,8 @@ export default {
   }
 
   .charts {
+    margin-top: 8vh;
+    margin-inline: auto;
     width: 80vw;
     max-width: 1200px;
     border: 1px solid rgba(255, 255, 255, 0.1);

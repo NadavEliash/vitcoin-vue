@@ -2,20 +2,29 @@
     <div class="navbar">
         <nav>
             <img @click="onLogo" class="logo" src="https://www.svgrepo.com/show/506408/bitcoin.svg" alt="bitcoin">
-            <h3 v-if="user" class="balance"><img src="https://www.svgrepo.com/show/222676/wallet.svg" alt="wallet"> ₿{{
-                balance }}</h3>
             <section @click="closeResponsiveNavbar" class="responsive-navbar" :class="{ show: isResponsiveNavbar }">
                 <RouterLink v-if="isResponsiveNavbar" to="/">Home</RouterLink>
                 <RouterLink to="/contact">Contacts</RouterLink>
                 <RouterLink to="/statistics">Statistics</RouterLink>
                 <div v-if="user" class="user-avatar">
-                    <img @click="isUserBar = !isUserBar" src="https://www.svgrepo.com/show/446529/avatar.svg" alt="user" />
-                    <div v-if="isUserBar" class="user-bar">
-                        <RouterLink to="/user" @click="isUserBar = false">User details</RouterLink>
-                        <h3 @click="logout">Logout</h3>
+                    <div v-if="isResponsiveNavbar"><a href="#" @click="logout">Logout</a></div>
+                    <div v-else>
+                        <img @click="isUserBar = !isUserBar" src="https://www.svgrepo.com/show/446529/avatar.svg"
+                            alt="user" />
+                        <div v-if="isUserBar" class="user-bar">
+                            <RouterLink to="/user" @click="isUserBar = false">User details</RouterLink>
+                            <h3 @click="logout">Logout</h3>
+                        </div>
                     </div>
                 </div>
                 <RouterLink v-else to="/login">Join</RouterLink>
+                <div :class="{ 'balance': true, 'box': user, 'responsive': isResponsiveNavbar }">
+                    <p>Current Rate: <span>₿1 = {{ rate.toLocaleString("en-US", { style: "currency", currency: "USD" })
+                    }}</span></p>
+                    <p v-if="user"> Your wallet: <span>₿{{ balance }}
+                            = {{ (rate * balance).toLocaleString("en-US", { style: "currency", currency: "USD" }) }}
+                        </span></p>
+                </div>
             </section>
         </nav>
     </div>
@@ -43,7 +52,7 @@ export default {
             this.isResponsiveNavbar = false
         },
         onLogo() {
-            if (window.innerWidth <= 600) {
+            if (window.innerWidth <= 900) {
                 this.onResponsiveNavbar()
                 console.log(this.isResponsiveNavbar)
             }
@@ -56,14 +65,20 @@ export default {
         },
         balance() {
             return this.$store.getters.user.balance
+        },
+        rate() {
+            const UsdRate = this.$store.getters.rate
+            return (1 / UsdRate)
         }
+    },
+    created() {
+        this.$store.dispatch({ type: 'loadRate' })
     }
 }
 </script>
 
 <style lang="scss">
 nav {
-    position: relative;
     display: flex;
     flex-direction: row;
     justify-content: space-between;
@@ -72,33 +87,54 @@ nav {
     font-size: 1.5rem;
     height: 10vh;
 
+    .logo {
+        width: 70px;
+        filter: invert(1);
+        cursor: pointer;
+    }
+
     .balance {
-        position: absolute;
-        translate: 10vw 8px;
+        align-self: start;
         display: flex;
-        flex-direction: row;
-        background-color: rgba(0, 0, 0, 0.4);
-        border-radius: 2rem;
-        padding: 1rem;
-        padding-top: .5rem;
-        text-indent: 1rem;
+        flex-direction: column;
+        gap: 1rem;
         line-height: 2.5rem;
+        font-size: 1.2rem;
+        background-color: rgba(0, 0, 0, 0.8);
+        border-radius: .5rem;
         text-shadow: 0px 0px 10px rgba(255, 255, 255, 1);
-        font-size: 1.3rem;
         color: white;
+        box-shadow: 0px 0px 10px 0px rgba(255, 255, 255, .5);
+        padding: 1rem;
+
+        p {
+            display: flex;
+            flex-direction: row;
+            flex-wrap: wrap;
+            justify-content: space-between;
+            gap: 1rem;
+        }
 
         img {
             width: 30px;
             filter: invert(1);
-            translate: 0 -12%;
+            translate: 0 5%;
         }
-    }
 
-    .logo {
-        width: 70px;
-        filter: invert(1);
-        translate: 0 10%;
-        cursor: pointer;
+        &.box {
+            translate: 0 20%;
+        }
+
+        &.responsive {
+            margin-inline: auto;
+            width: max(90%, 260px);
+            background-color: transparent;
+            box-shadow: none;
+            text-shadow: none;
+            font-size: min(1.5rem, 2.5vh);
+            margin-top: auto;
+            margin-bottom: 2rem;
+        }
     }
 
     a {
@@ -120,33 +156,47 @@ nav {
         display: flex;
         flex-direction: row;
         align-items: center;
-        gap: 4rem;
+        gap: 3rem;
 
-        @media(max-width: 600px) {
+        @media(max-width: 900px) {
             position: fixed;
             display: flex;
             flex-direction: column;
             width: 100vw;
+            height: 100%;
             align-items: center;
-            background-color: rgba(3, 4, 29, 0.9);
+            background-color: rgba(3, 4, 29, 0.95);
             font-size: 2.5rem;
             gap: 2rem;
             padding: 1rem;
-            margin-left: -18rem;
-            margin-top: 18rem;
-            opacity: 0;
-            scale: 1 0;
+            left: -100%;
+            top: 0;
+            opacity: 0.6;
             transition: .4s;
             pointer-events: none;
 
             &.show {
-                margin-left: -2.5rem;
-                scale: 1 1;
                 opacity: 1;
+                left: 0;
                 transition: .6s;
                 z-index: 10;
                 cursor: pointer;
                 pointer-events: all;
+
+                .user-avatar {
+                    width: 100%;
+                }
+
+                a {
+                    display: block;
+                    width: 100%;
+                    height: 4rem;
+                    text-align: center;
+
+                    &:hover {
+                        background-color: rgba(255, 255, 255, .1);
+                    }
+                }
             }
         }
 

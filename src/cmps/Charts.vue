@@ -40,7 +40,7 @@ export default {
                             boxHeight: 5,
                             color: 'white',
                             font: {
-                                size: 20,
+                                size: 18,
                                 weight: 600,
                             }
                         }
@@ -62,11 +62,11 @@ export default {
             this.chartData = {
                 labels: marketData.dates,
                 datasets: [{
-                    label: 'Market price (USD)',
+                    label: 'Market price (USD in thousands)',
                     data: marketData.prices,
                     borderColor: 'rgba(255, 50, 50, .5)',
                     borderWidth: 3,
-                    pointRadius: 2,
+                    pointRadius: 0.5,
                 }]
             }
         } catch (err) {
@@ -84,7 +84,7 @@ export default {
                     data: blockData.avgSize,
                     borderColor: 'rgba(255, 50, 50, .5)',
                     borderWidth: 3,
-                    pointRadius: 2,
+                    pointRadius: 0.5,
                 }]
             }
         } catch (err) {
@@ -109,6 +109,8 @@ export default {
     align-items: center;
     justify-content: space-between;
     padding-inline: 1.5rem;
+    margin-left: auto;
+    margin-bottom: 1rem;
     cursor: pointer;
 
     .marked {
@@ -129,6 +131,11 @@ export default {
             translate: -100%;
             width: 45%;
         }
+    }
+
+    @media(max-width: 600px) {
+        font-size: 1rem;
+        min-width: 260px;
     }
 }
 </style>

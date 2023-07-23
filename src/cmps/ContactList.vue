@@ -9,10 +9,16 @@
                         <img src="https://www.svgrepo.com/show/510965/edit-pencil-01.svg" alt="edit">
                     </button>
                 </RouterLink>
-                <button @click.stop="onRemoveContact(contact._id)">
+                <button @click.stop="onRemoveMsg(contact.name)">
                     <img src="https://www.svgrepo.com/show/502608/delete-2.svg" alt="delete">
                 </button>
             </section>
+            <div v-if="showMsg?.name === contact.name" class="remove-msg">Are you sure you want to remove <span>{{
+                contact.name }}</span>?
+                <button @click.stop="onRemoveContact(contact._id)">Yes</button>
+                <button @click.stop="closeMsg()">No</button>
+                <div class="background-clicker" @click.stop="closeMsg()"></div>
+            </div>
         </li>
     </TransitionGroup>
 </template>
@@ -24,9 +30,20 @@ export default {
     props: {
         contacts: { type: Array, required: true }
     },
+    data() {
+        return {
+            showMsg: {},
+        }
+    },
     methods: {
+        onRemoveMsg(name) {
+            this.showMsg = { name }
+        },
         onRemoveContact(contactId) {
             this.$emit('remove', contactId)
+        },
+        closeMsg() {
+            this.showMsg = null
         }
     },
     components: {
@@ -65,6 +82,7 @@ export default {
     margin-inline: auto;
 
     &::-webkit-scrollbar {
+        display: block;
         width: .7rem;
     }
 
@@ -106,6 +124,7 @@ export default {
 
 .action {
     margin-top: .7rem;
+    text-align: end;
 
     button {
         margin-inline: 5px;
@@ -124,6 +143,47 @@ export default {
             scale: 1.1;
             transition: .4s;
         }
+    }
+}
+
+.remove-msg {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    translate: -50% -50%;
+    width: max(260px, 30%);
+    text-align: center;
+    font-size: 1.5rem;
+    line-height: 2.5rem;
+    font-size: 1.2rem;
+    background-color: rgba(0, 0, 0, 0.9);
+    border-radius: 2rem;
+    color: white;
+    box-shadow: 0px 0px 10px 0px rgba(255, 255, 255, .5);
+    padding: 1rem;
+    z-index: 100;
+
+    button {
+        margin-inline: auto;
+        margin-top: 1rem;
+        border: 0;
+        border-radius: 3rem;
+        width: 20%;
+        height: 3rem;
+        font-weight: 600;
+        background-color: rgb(255, 88, 88);
+        cursor: pointer;
+    }
+
+    .background-clicker {
+        position: fixed;
+        left: -50vw;
+        top: -50vh;
+        width: 200vw;
+        height: 200vh;
+        background-color: rgba(255, 255, 255, 0.1);
+        z-index: -10;
+        cursor: default;
     }
 }
 </style>

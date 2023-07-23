@@ -8,6 +8,11 @@
             <button>Fund {{ contact.name }}</button>
         </form>
     </div>
+    <div v-if="showMsg" class="thanks-msg">
+        <h2>Thank You!</h2>
+        <h3>{{ contact.name }} received your generous gift (₿{{ transaction.amount }})!</h3>
+        <RouterLink @click.stop="showMsg === false" to="/contact">Continue</RouterLink>
+    </div>
 </template>
 
 <script>
@@ -20,7 +25,8 @@ export default {
                 to: this.contact.name,
                 at: Date.now(),
                 amount: 1
-            }
+            },
+            showMsg: false
         }
     },
     props: {
@@ -34,6 +40,8 @@ export default {
             if (this.transaction.amount > this.user.balance) return
             await this.$store.dispatch({ type: 'setTransaction', transaction: this.transaction })
             this.user = this.$store.getters.user
+            this.showMsg = true
+            // this.$router.push('/contact')
         }
     }
 }
@@ -82,6 +90,36 @@ export default {
         &:hover {
             background-color: rgba(7, 239, 15, 0.4);
         }
+    }
+
+}
+
+.thanks-msg {
+    position: fixed;
+    top: 20%;
+    left: 50%;
+    translate: -50%;
+    width: 80vw;
+    border-radius: 2rem;
+    background-color: rgba(28, 114, 31, 0.9);
+    padding: 1rem;
+    color: white;
+
+    h3 {
+        margin-top: 1rem;
+        margin-bottom: 1.5rem;
+    }
+
+    a {
+        padding: 1rem;
+        background-color: rgba(0, 0, 0, .4);
+        color: white;
+        font-weight: 600;
+        border-radius: 2rem;
+        display: block;
+        width: 60%;
+        min-width: 160px;
+        margin-inline: auto;
     }
 }
 </style>
