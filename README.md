@@ -1,29 +1,8 @@
-# vue_proj
+<h1 align="center">Welcome to <a href="https://nadaveliash.github.io/vitcoin-vue/" target="blank">Vitcoin!</a></h1>
+<h3 align="center">A Bitcoin transfering demo app <a href="https://nadaveliash.github.io/vitcoin-vue/" target="blank">(Go to the live site)</a></h3>
 
-This template should help get you started developing with Vue 3 in Vite.
 
-## Recommended IDE Setup
-
-[VSCode](https://code.visualstudio.com/) + [Volar](https://marketplace.visualstudio.com/items?itemName=Vue.volar) (and disable Vetur) + [TypeScript Vue Plugin (Volar)](https://marketplace.visualstudio.com/items?itemName=Vue.vscode-typescript-vue-plugin).
-
-## Customize configuration
-
-See [Vite Configuration Reference](https://vitejs.dev/config/).
-
-## Project Setup
-
-```sh
-npm install
-```
-
-### Compile and Hot-Reload for Development
-
-```sh
-npm run dev
-```
-
-### Compile and Minify for Production
-
-```sh
-npm run build
-```
+<p>Written with Vue.js.
+  <br/> Includes live data about Bitcoin rates and statiatics, based on api from <a href="https://www.blockchain.com/en/">Blockchain.com</a>
+  <br/> Just sign in with name and start share bitcoin with friends:)
+</p>
