@@ -2,9 +2,9 @@
     <div class="home-page">
         <h1>Trade. <span class="invest">Invest.</span> <span class="earn">Earn.</span></h1>
         <div class="login" @click="correctRoute">{{ buttonTxt }}</div>
-        <div v-if="user" class="transaction-home">
+        <!-- <div v-if="user" class="transaction-home">
             <TransactionList />
-        </div>
+        </div> -->
     </div>
 </template>
 
@@ -17,7 +17,7 @@ export default {
             return this.$store.getters.user
         },
         buttonTxt() {
-            const txt = this.user ? `Let's fund` : "Get started!";
+            const txt = this.user ? `Let's share coins!` : "Get started!";
             return txt;
         },
         correctRoute() {
@@ -111,8 +111,8 @@ export default {
         width: 40%;
         min-width: 300px;
         text-align: center;
-        border-radius: 0 3rem 3rem 0;
-        padding: 1rem;
+        border-radius: 0 5rem 5rem 0;
+        padding: 2rem;
         margin-left: 2rem;
         margin-top: 2rem;
         cursor: pointer;
@@ -120,7 +120,7 @@ export default {
         animation-duration: 2.3s;
 
         @media(min-width: 900px) {
-            border-radius: 3rem;
+            border-radius: 5rem;
             margin-top: 4rem;
             margin-inline: auto;
         }

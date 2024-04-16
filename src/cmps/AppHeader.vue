@@ -79,6 +79,7 @@ export default {
 
 <style lang="scss">
 nav {
+    padding-top: 2rem;
     display: flex;
     flex-direction: row;
     justify-content: space-between;
@@ -101,11 +102,12 @@ nav {
         line-height: 2.5rem;
         font-size: 1.2rem;
         background-color: rgba(0, 0, 0, 0.8);
-        border-radius: .5rem;
+        border-radius: 2rem;
         text-shadow: 0px 0px 10px rgba(255, 255, 255, 1);
         color: white;
         box-shadow: 0px 0px 10px 0px rgba(255, 255, 255, .5);
-        padding: 1rem;
+        padding-block: 1rem;
+        padding-inline: 2rem;
 
         p {
             display: flex;
