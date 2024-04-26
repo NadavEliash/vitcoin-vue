@@ -15,8 +15,10 @@
             </section>
             <div v-if="showMsg?.name === contact.name" class="remove-msg">Are you sure you want to remove <span>{{
                 contact.name }}</span>?
-                <button @click.stop="onRemoveContact(contact._id)">Yes</button>
-                <button @click.stop="closeMsg()">No</button>
+                <div class="remove-btns">
+                    <button @click.stop="onRemoveContact(contact._id)">Yes</button>
+                    <button @click.stop="closeMsg()">No</button>
+                </div>
                 <div class="background-clicker" @click.stop="closeMsg()"></div>
             </div>
         </li>
@@ -77,13 +79,17 @@ export default {
     margin-top: 2rem;
     height: 62vh;
     max-width: 600px;
-    min-width: 320px;
+    min-width: 220px;
     overflow-y: scroll;
     margin-inline: auto;
 
     &::-webkit-scrollbar {
-        display: block;
-        width: .7rem;
+        display: flex;
+        width: .3rem;
+
+        @media(min-width: 600px) {
+            width: .5rem;
+        }
     }
 
     &::-webkit-scrollbar-track {
@@ -163,9 +169,15 @@ export default {
     padding: 1rem;
     z-index: 100;
 
-    button {
-        margin-inline: auto;
+    .remove-btns {
+        display: flex;
+        gap: 2rem;
         margin-top: 1rem;
+        align-items: center;
+        justify-content: center;
+    }
+
+    button {
         border: 0;
         border-radius: 3rem;
         width: 20%;

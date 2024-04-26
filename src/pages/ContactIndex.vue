@@ -50,7 +50,7 @@ export default {
     height: 2.5rem;
     width: 100%;
     max-width: 600px;
-    min-width: 320px;
+    min-width: 220px;
     border-radius: 3rem;
     font-size: 1.2rem;
     margin-top: 1rem;

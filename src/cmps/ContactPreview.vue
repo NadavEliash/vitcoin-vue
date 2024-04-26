@@ -18,6 +18,7 @@ export default {
     display: flex;
     align-items: center;
     gap: 2rem;
+    font-size: small;
 }
 
 .contact-img {

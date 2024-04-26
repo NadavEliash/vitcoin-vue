@@ -17,7 +17,7 @@ export default {
             return this.$store.getters.user
         },
         buttonTxt() {
-            const txt = this.user ? `Let's share coins!` : "Get started!";
+            const txt = this.user ? `Let's share!` : "Get started!";
             return txt;
         },
         correctRoute() {
@@ -112,7 +112,7 @@ export default {
         min-width: 300px;
         text-align: center;
         border-radius: 0 5rem 5rem 0;
-        padding: 2rem;
+        padding: 1rem;
         margin-left: 2rem;
         margin-top: 2rem;
         cursor: pointer;
@@ -127,6 +127,9 @@ export default {
 
         @media(max-width: 600px) {
             margin-inline: 0;
+            text-align: start;
+            font-size: xx-large;
+            min-width: 220px;
         }
 
         @keyframes deley-show {

@@ -11,5 +11,6 @@
     height: 5vh;
     padding: .5rem;
     padding-bottom: 1rem;
+    line-height: 1;
 }
 </style>

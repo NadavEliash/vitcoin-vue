@@ -18,12 +18,12 @@
                     </div>
                 </div>
                 <RouterLink v-else to="/login">Join</RouterLink>
-                <div :class="{ 'balance': true, 'box': user, 'responsive': isResponsiveNavbar }">
+                <div :class="{ 'balance': true, 'responsive': isResponsiveNavbar }">
                     <p>Current Rate: <span>₿1 = {{ rate.toLocaleString("en-US", { style: "currency", currency: "USD" })
                     }}</span></p>
-                    <p v-if="user"> Your wallet: <span>₿{{ balance }}
+                    <!-- <p v-if="user"> Your wallet: <span>₿{{ balance }}
                             = {{ (rate * balance).toLocaleString("en-US", { style: "currency", currency: "USD" }) }}
-                        </span></p>
+                        </span></p> -->
                 </div>
             </section>
         </nav>

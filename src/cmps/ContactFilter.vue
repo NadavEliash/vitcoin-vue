@@ -30,7 +30,7 @@ export default {
     margin-top: 8vh;
     position: relative;
     max-width: 600px;
-    min-width: 320px;
+    min-width: 220px;
     margin-inline: auto;
 
     input {
